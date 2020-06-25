@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link href="./static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="./static/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/admin/css/linearicons.css" rel="stylesheet">
+    <link href="./static/admin/css/simple-line-icons.css" rel="stylesheet">
+    <link href="./static/admin/css/dataTables.bootstrap4.min.css" rel="stylesheet" media="none" onload="if(media!=&apos;all&apos;)media=&apos;all&apos;">
+    <link href="./static/admin/css/theme.css" rel="stylesheet">
+    <link href="./static/admin/css/styles.css" rel="stylesheet">
+    <link href="./static/admin/profile.png" rel="icon">
+    <script src="./static/admin/js/jquery.min.js"></script>
+  </head>
+<body class="navbar-expand-lg wow fadeIn faster" data-wow-delay="300ms" data-spy="scroll" data-target="#sm" data-offset="60">
+    <div class="container-fluid fixed-top bg-primary" id="topnav">
+        <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+            <div class="col">
+                <nav class="navbar navbar-dark navbar-expand px-lg-1">
+                    <a class="navbar-brand" href="#" title="Home" data-toggle="dropdown">SpotyBot</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+<br>
+<script>
+    $(function() {
+$('#btnSignIn').click(function() {
+    $.ajax({
+        url: '/signin',
+        data: $('form').serialize(),
+        type: 'POST',
+        success: function(response){
+            if(response == 'Err:login_pass_error'){
+                alert('Error! Username or password wrong.');
+            }
+            else{
+                window.location.href = response;
+            }
+        }
+    });
+});
+});
+</script>
+    <div class="col-md-6 col-lg-3 pb-2 text-center" style="margin: auto;">
+        <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Sign In</h3>
+        </div>
+        <div class="card-body">
+            <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" method="POST">
+                <div class="form-group">
+                    <label for="uname1">Username</label>
+                    <input type="text" class="form-control" name="username" id="uname2" required>
+                    <div class="invalid-feedback">Please enter your username or email</div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" id="pwd2" required autocomplete="new-password">
+                    <div class="invalid-feedback">Please enter a password</div>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg float-right" id="btnSignIn">Sign In</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>

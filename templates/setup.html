@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotyBot - Setup</title>
+    <link href="./static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="./static/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/admin/css/linearicons.css" rel="stylesheet">
+    <link href="./static/admin/css/simple-line-icons.css" rel="stylesheet">
+    <link href="./static/admin/css/dataTables.bootstrap4.min.css" rel="stylesheet" media="none" onload="if(media!=&apos;all&apos;)media=&apos;all&apos;">
+    <link href="./static/admin/css/theme.css" rel="stylesheet">
+    <link href="./static/admin/css/styles.css" rel="stylesheet">
+    <link href="./static/admin/profile.png" rel="icon">
+    <script src="./static/admin/js/jquery.min.js"></script>
+    <script src="./static/js/setup.js"></script>
+  </head>
+  <body class="navbar-expand-lg wow fadeIn faster" data-wow-delay="300ms" data-spy="scroll" data-target="#sm" data-offset="60">
+        <div class="container-fluid fixed-top bg-primary" id="topnav">
+        <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+            <div class="col">
+                <nav class="navbar navbar-dark navbar-expand px-lg-1">
+                    <a class="navbar-brand" href="/" title="Home" >SpotyBot</a>
+                    <ul class="navbar-nav ml-auto mr-2">
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#profile" data-target="#modalProfile" class="nav-link py-0 text-truncate" data-toggle="modal">
+                                <span class="align-middle" data-toggle="tooltip" data-placement="left" title="You are logged in">
+                                    Andrey
+                                </span>
+                                <img alt="avatar" src="./static/admin/assets/profile_1.png" class="avatar mx-1 ml-0 rounded-circle bg-white shadow-sm">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6  pb-2 text-center" style="margin: auto;">
+            <div class="col p-0 d-flex flex-column">
+                <main class="px-2 flex-fill" data-ng-app="app" data-ng-controller="ctrl">
+                        <div class="row">
+                            <div class="col-12 px-4 d-flex flex-column">
+                                <div class="row">
+                                    <div class="col-md py-3">
+                                            <ul class="list-group py-2" style="margin: auto;">
+                                                <div class="row" >
+                                                    <div class="col-md-12">
+                                                        <h4 class="mb-4 text-muted font-weight-light">Setup</h4>
+                                                        <div style="width: auto; height: 435pt; overflow-y: scroll;" id="CntLst">
+                                                        <!-- contacts card -->
+                                                        <div class="card border-0" id="card_contacts">
+                                                            <div id="contacts" class="panel-collapse collapse show" aria-expanded="true" role="tabpanel">
+                                                                <!-- contacts list -->
+                                                                <ul class="list-group" id="contact-list">
+                                                                    <li class="list-group-item d-block">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col-12 col-sm-5 col-lg-10 text-center text-sm-left">
+                                                                                <h5 id="myModalLabel">Нажмите кнопку "Add Setup"<br>Добавьте настройку</h3>
+                                                                                        <button type="button" style="width: 10em;" onclick="DrawSetUpPlace();" class="btn btn-outline-secondary text-uppercase mr-sm-auto mr-none">Add Setup</button>
+                                                                                        <div id="search_advice_wrapper"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    {% for i in data %}
+                                                                            {% if i['status'] == "300" or i['status']=="200" %}
+                                                                        <form id="${current_id}_form" method="post">
+                                                                            <li class="list-group-item d-block">
+                                                                                <div class="row align-items-center">
+                                                                                    <div class="col-12 col-sm-5 col-lg-10 text-center text-sm-left">
+                                                                                        <h6 id="myModalLabel">Логин: 
+                                                                                            {{i['login']}}</h6> 
+                                                                                        <h6 id="myModalLabel">Пароль:
+                                                                                            {{i['password']}}</h6>
+                                                                                        <h6 id="myModalLabel">Примерное время работы: с
+                                                                                            {{i['first_t']}}  до 
+                                                                                            {{i['second_t']}}</h6>
+                                                                                        <h6 id="myModalLabel">Ограничение по прослушиваниям: {{i['lim']}}</h6>
+                                                                                        <h6 id="myModalLabel">Ссылка на альбом/артиста: {{i['link']}}
+                                                                                            </h6><br>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            </form>
+                                                                            {%endif%}
+                                                                        {%endfor%}
+                                                                </ul><!--/contacts list-->
+                                                            </div><!--/collapse-->
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>    
+                                                </div>
+                                                
+                                            </ul>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+            </div>
+        </div>
+    </div>
+         
+    <script src="./static/admin/js/jquery.min.js"></script>
+    <script src="./static/admin/js/bootstrap.bundle.min.js"></script>
+    <script src="./static/admin/js/wow.min.js"></script>
+    <script src="./static/admin/js/Chart.min.js"></script>
+    <script src="./static/admin/js/jquery.dataTables.min.js"></script>
+    <script src="./static/admin/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script src="./static/admin/js/angular.min.js"></script>
+    <script src="./static/admin/js/app.js"></script>
+  </body>
+</html>
+
